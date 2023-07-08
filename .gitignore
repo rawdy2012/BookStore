@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Foto.BookStore/.vs/Foto.BookStore
+/Foto.BookStore/Foto.BookStore/obj
