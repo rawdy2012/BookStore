@@ -4,9 +4,9 @@ namespace Foto.BookStore.Controllers
 {
     public class HomeController:Controller
     {
-        public IActionResult Index()
+        public string Index()
         {
-            return View("First Action Method");
+            return "First Action Method";//View("First Action Method");
         }
     }
 }
