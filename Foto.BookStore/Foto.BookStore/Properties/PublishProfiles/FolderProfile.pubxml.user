@@ -5,7 +5,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\inetpub\wwwroot\FotoBookStore</_PublishTargetUrl>
-    <History>True|2023-07-09T06:41:52.4933468Z;True|2023-07-09T12:07:59.9081747+05:30;</History>
+    <History>False|2023-07-16T11:40:46.1997284Z;False|2023-07-16T17:10:09.8117017+05:30;True|2023-07-09T12:11:52.4933468+05:30;True|2023-07-09T12:07:59.9081747+05:30;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
