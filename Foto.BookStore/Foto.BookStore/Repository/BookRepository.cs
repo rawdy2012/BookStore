@@ -20,11 +20,11 @@ namespace Foto.BookStore.Repository
         { 
          return new List<BookModel> ()
          { 
-             new BookModel(){Id=1,Title="MVC",Author="Ajay"},
-             new BookModel(){Id=2,Title="Sql",Author="Ajay"},
-             new BookModel(){Id=3,Title="Bootstrap",Author="Param"},
-             new BookModel(){Id=4,Title="HTML",Author="Vinay"},
-             new BookModel(){Id=5,Title="Jquery",Author="Param"},
+             new BookModel(){Id=1,Title="MVC",Author="Ajay",Description= "This is MVC description",Category="Programming",Language="English",TotalPages=167},
+             new BookModel(){Id=2,Title="Sql",Author="Ajay",Description= "This is Sql description",Category="Programming",Language="English",TotalPages=1671},
+             new BookModel(){Id=3,Title="Bootstrap",Author="Param",Description= "This is Bootstrap description",Category="Programming",Language="English",TotalPages=1672},
+             new BookModel(){Id=4,Title="HTML",Author="Vinay",Description= "This is HTML description",Category="Programming",Language="English",TotalPages=1673},
+             new BookModel(){Id=5,Title="Jquery",Author="Param",Description= "This is Jquery description",Category="Programming",Language="English",TotalPages=1674},
          };    
         }
     }
