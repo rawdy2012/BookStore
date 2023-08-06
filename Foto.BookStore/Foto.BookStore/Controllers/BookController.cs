@@ -19,6 +19,7 @@ namespace Foto.BookStore.Controllers
         }
         public ViewResult GetBook(int id)
         {
+
             var data = _bookRepository.GetBookById(id);
             return View(data);
         }
