@@ -25,15 +25,8 @@ app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapDefaultControllerRoute();
-    //endpoints.MapGet("/", async context =>
-    //{
-    //    if (env.IsProduction())
-    //    {
-    //        await context.Response.WriteAsync("Hello from dev!");
-    //    }
-        
-    //});
-   
+    //endpoints.MapControllerRoute(name: "defaults",pattern:"foto/{controller=Home}/{action=Index}/{id?}");
+
 });
 
 app.Run();

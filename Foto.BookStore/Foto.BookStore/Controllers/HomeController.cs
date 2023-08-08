@@ -16,5 +16,6 @@ namespace Foto.BookStore.Controllers
         {
             return View();
         }
+
     }
 }
