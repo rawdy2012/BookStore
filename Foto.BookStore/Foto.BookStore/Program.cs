@@ -1,10 +1,19 @@
+using Foto.BookStore.data;
+using Foto.BookStore.Repository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<BookStoreDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BSConn"));
+});
 builder.Services.AddControllersWithViews();
 #if DEBUG
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
+builder.Services.AddScoped<BookRepository, BookRepository>();
 var app = builder.Build();
 
 

@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<BookModel>
+
 @{
+
     Pager pager = new Pager();
     int pageNo = 0;
     if (ViewBag.Pager != null)
@@ -33,7 +35,198 @@
         }
 
     </div>
+
+    
 </div>
+
+@*<div class="row">
+    <div class="col-md-3">
+    <div class="card mb-3 shadow-sm">
+    <h5>Bind Dropdown List</h5>
+    <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+    <select name="products" class="form-control" asp-items="@ViewBag.Units"></select>
+    </div>
+
+    <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+    <select name="uname" class="form-control" asp-items="@ViewBag.list"></select>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>*@
+@*<div class="row">
+    <div class="col-md-3">
+    <div class="card mb-3 shadow-sm">
+    <h5>Bind Dropdown List</h5>
+    <div class="card-body">
+    <div class="d-flex justify-content-between align-items-center">
+    <table id="myTable" border="1">
+    </table><form>
+    <input type="button" onclick="createTable()" value="Create the table">
+    </form>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>*@
+
+
+
+
+
+
+<style>
+    table, td {
+        border: 1px solid black;
+    }
+</style>
+@*<div class="row">
+    <div class="col-md-3">
+    <div class="card mb-3 shadow-sm">
+    <h5>Bind Dropdown List</h5>
+    <div class="card-body">
+
+    <p>Click the buttons to create and delete row(s) for the table.</p>
+
+    <table id="myTable" border="1">
+    <tr style="border:1px solid">
+    <td style="border:1px solid">Row1 cell1</td>
+    <td>Row1 cell2</td>
+    <td>Row1 cell1</td>
+    <td>Row1 cell2</td>
+    <td>Row1 cell1</td>
+    <td>Row1 cell2</td>
+    </tr>
+    </table>
+    <br />
+    <style type="text/css">
+    body {
+    margin: 30px;
+    }
+    </style>
+
+    <br />
+    <button onclick="myCreateFunction()">Create row</button>
+    <button onclick="myDeleteFunction()">Delete row</button>
+    <br />
+    <div id='myElement'></div>
+
+    <br />
+
+    </div>
+    </div>
+    </div>
+    </div>*@
+<script>
+
+    function BtnAdd() {
+        var v = $("#TRow").clone().appendTo("#TBody");
+        $(v).find("input").val('');
+        $(v).removeClass("d-none");
+    }
+    function BtnDel(v) {
+        debugger
+        $(v).parent().parent().remove();
+    }
+
+    function createTable() {
+        rn = window.prompt("Input number of rows", 1);
+        cn = window.prompt("Input number of columns", 1);
+
+        for (var r = 0; r < parseInt(rn, 10); r++) {
+            var x = document.getElementById('myTable').insertRow(r);
+            for (var c = 0; c < parseInt(cn, 10); c++) {
+                var y = x.insertCell(c);
+                y.innerHTML = "Row-" + r + " Column-" + c;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+                    //function createTable() {
+                    //    debugger
+                    //    var a = document.getElementById("tb1").value;
+                    //    var b = document.getElementById("tb2").value;
+                    //    var resultTable = '<table>';
+
+                    //    if (a == "" || b == "") {
+                    //        alert("Please enter some numeric value");
+                    //    } else {
+                    //        for (var i = 0; i < parseInt(a); i++) {
+                    //            resultTable += '<tr>';
+                    //            for (var j = 0; j < parseInt(b); j++)
+                    //                resultTable += '<td><\/td>';
+                    //        }
+                    //        resultTable += '<\/tr>';
+
+                    //    }
+                    //    resultTable += '<\/table';
+                    //}
+                    //return resultTable;
+
+                    //                }
+
+                    //function myCreateFunction() {
+                    //    var table = document.getElementById("myTable");
+                    //    var row = table.insertRow(0);
+                    //    var cell1 = row.insertCell(0);
+                    //    var cell2 = row.insertCell(1
+                    //        var cell1 = row.insertCell(0);
+                    //    var cell2 = row.insertCell(1);
+                    //    var cell1 = row.insertCell(0);
+                    //    var cell2 = row.insertCell(1);
+                    //    cell1.innerHTML = "NEW CELL1";
+                    //    cell2.innerHTML = "NEW CELL2";
+                    //    cell3.innerHTML = "NEW CELL3";
+                    //    cell4.innerHTML = "NEW CELL4";
+                    //    cell5.innerHTML = "NEW CELL5";
+                    //    cell6.innerHTML = "NEW CELL6";
+                    //}
+
+                    //function myDeleteFunction() {
+
+                    //    document.getElementById("myTable").deleteRow(0);
+                    //}
+
+
+
+                    //var tablearea = document.getElementById('tablearea'),
+                    //    table = document.createElement('table');
+
+                    //for (var i = 1; i < 10; i++) {
+                    //    var tr = document.createElement('tr');
+
+                    //    tr.appendChild(document.createElement('td'));
+                    //    tr.appendChild(document.createElement('td'));
+
+                    //    tr.cells[0].appendChild(document.createTextNode('Text1'))
+                    //    tr.cells[1].appendChild(document.createTextNode('Text2'));
+
+                    //    table.appendChild(tr);
+                    //}
+
+                    //tablearea.appendChild(table);
+
+
+
+
+</script>
+
+
+
 <partial name="_pager" model="@pager" />
 
 

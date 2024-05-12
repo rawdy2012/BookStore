@@ -1,28 +1,160 @@
-﻿using Foto.BookStore.Models;
+﻿
+using Foto.BookStore.data;
+using Foto.BookStore.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace Foto.BookStore.Repository
 {
     public class BookRepository
     {
-        public List<BookModel> GetAllBooks()
+        private readonly BookStoreDbContext _dbContext = null;
+        public BookRepository(BookStoreDbContext dbContext)
         {
-            return DataSource();
+            _dbContext = dbContext;
         }
-        public BookModel GetBookById(int id) 
+
+        public async Task<int> AddNewBook(BookModel model)
         {
-            return DataSource().Where(x => x.Id == id).FirstOrDefault();
+            var newBook = new Books()
+            {
+                Author = model.Author,
+                Title = model.Title,
+                Description = model.Description,
+                Category = model.Category,
+                Language = model.Language,
+                TotalPages = model.TotalPages,
+                CreatedOn = DateTime.UtcNow,
+                UpdatedOn = DateTime.UtcNow,
+            };
+            await _dbContext.Books.AddAsync(newBook);
+            await _dbContext.SaveChangesAsync();
+            return newBook.Id;
+
         }
-        public  List<BookModel> SearchBook(string title,string authorName) 
+
+        #region add New Languages
+        public async Task<int> AddNewLanguages(LanguageModel model)
         {
-        return DataSource().Where(x=>x.Title.Contains(title) || x.Author.Contains(authorName)).ToList();
+            var newLanguages = new LanguageModel()
+            {
+
+                LanguageValue = model.LanguageValue,
+                LanguageName = model.LanguageName
+            };
+            await _dbContext.Languages.AddAsync(newLanguages);
+            await _dbContext.SaveChangesAsync();
+            return newLanguages.Id;
+
         }
-       
-    
-    private List<BookModel> DataSource() 
-        { 
-         return new List<BookModel> ()
-         { 
+        #endregion
+
+        //Get All Languages
+
+        //public async Task<List<LanguageModel>> GetAllLanguages()
+        //{
+        //    var languages = new List<LanguageModel>();
+        //    var allLanguages = await _dbContext.Languages.ToListAsync();
+        //    if (allLanguages.Any() == true)
+        //    {
+        //        foreach (var language in allLanguages)
+        //        {
+        //            languages.Add(new LanguageModel
+        //            { 
+        //                LanguageName=language.LanguageName
+        //            });
+        //        }
+        //    }
+        //    return languages;
+        //}
+        public List<LanguageModel> GetAllLanguages()
+        {
+            var allLanguages = _dbContext.Languages.ToList();
+            var languages = new List<LanguageModel>();
+
+            if (allLanguages.Any() == true)
+            {
+                foreach (var item in allLanguages)
+                {
+                    languages.Add(new LanguageModel() { LanguageValue=item.LanguageValue, LanguageName = item.LanguageName });
+                };
+            }
+            return languages;
+        }
+        public async Task<List<BookModel>> GetAllBooks()
+        {
+            var books = new List<BookModel>();
+            var allBooks = await _dbContext.Books.ToListAsync();
+            if (allBooks.Any() == true)
+            {
+                foreach (var book in allBooks)
+                {
+                    books.Add(new BookModel
+                    {
+                        Id = book.Id,
+                        Author = book.Author,
+                        Title = book.Title,
+                        Description = book.Description,
+                        Category = book.Category,
+                        Language = book.Language,
+                        TotalPages = book.TotalPages
+                    });
+                }
+            }
+            return books;
+        }
+        public async Task<BookModel> GetBookById(int id)
+        {
+            var book = await _dbContext.Books.FindAsync(id);
+            if (book != null)
+            {
+                var bookDetails = new BookModel()
+                {
+                    Id = book.Id,
+                    Author = book.Author,
+                    Title = book.Title,
+                    Description = book.Description,
+                    Category = book.Category,
+                    Language = book.Language,
+                    TotalPages = book.TotalPages
+                };
+                return bookDetails;
+            }
+            return null;
+        }
+
+        #region Get Language Details
+        public async Task<LanguageModel> GetlanguageById(int id)
+        {
+            var language = await _dbContext.Languages.FindAsync(id);
+            if (language != null)
+            {
+                var languageDetails = new LanguageModel()
+                {
+                    Id = language.Id,
+                    LanguageValue = language.LanguageValue,
+                    LanguageName = language.LanguageName
+                };
+                return languageDetails;
+            }
+            return null;
+        }
+        #endregion
+
+
+        public List<BookModel> SearchBook(string title, string authorName)
+        {
+            return DataSource().Where(x => x.Title.Contains(title) || x.Author.Contains(authorName)).ToList();
+        }
+
+
+        private List<BookModel> DataSource()
+        {
+            return new List<BookModel>()
+         {
              new BookModel(){Id=1,Title="MVC",Author="Ajay",Description= "This is MVC description",Category="Programming",Language="English",TotalPages=167},
              new BookModel(){Id=2,Title="Sql",Author="Ajay",Description= "This is Sql description",Category="Programming",Language="English",TotalPages=1671},
              new BookModel(){Id=3,Title="Bootstrap",Author="Param",Description= "This is Bootstrap description",Category="Programming",Language="English",TotalPages=1672},
@@ -49,8 +181,9 @@ namespace Foto.BookStore.Repository
               new BookModel(){Id=21,Title="New Test Book 1",Author="Test 1",Description= "This is Test 1 description",Category="Test Cat 1",Language="English",TotalPages=1674},
 
                new BookModel(){Id=22,Title="New Test Book 2",Author="Test 2",Description= "This is Test 2 description",Category="test cat 2",Language="English",TotalPages=1674},
-         };    
+         };
         }
+
 
         //Test for custom page list
     }

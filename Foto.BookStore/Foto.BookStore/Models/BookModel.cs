@@ -1,14 +1,23 @@
-﻿namespace Foto.BookStore.Models
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+
+namespace Foto.BookStore.Models
 {
     public class BookModel
     {
+        //[DataType(DataType.Time)]
+        //public string MyField { get; set; }
         public int Id { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string Author { get; set; }
 
         public string Description { get; set; }
         public string Category { get; set; }
         public string Language { get; set; }
+        public List<string> MultiLanguages { get; set; }
+        [Required(ErrorMessage ="Please enter the total pages")]
         public int TotalPages { get; set; }
     }
 
@@ -60,4 +69,7 @@
             EndPage = endPage;
         }
     }
+
+    
+
 }

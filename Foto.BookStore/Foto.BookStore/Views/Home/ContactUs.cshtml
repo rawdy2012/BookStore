@@ -8,8 +8,102 @@
 
 <!DOCTYPE html>
 
-<html>
+<html>  
 <head>
+    <script>
+        $(document).ready(function () {
+
+
+            //$('.menu').on('click', 'li', function () {
+            //    debugger
+            //    if ($('.menu li#tab1').hasClass('active') == true)
+            //    {
+            //        $('.menu li#tab1').removeClass('active'); $('.menu li#tab2').addClass('active');
+            //    }
+
+            //    else if ($('.menu li#tab2').hasClass('active') == true)
+            //    {
+            //        $('.menu li#tab2').removeClass('active'); $('.menu li#tab3').addClass('active');
+            //    }
+            //    //($('.menu li#tab3').hasClass('active') == true) {
+            //            else
+            //        $('.menu li#tab3').removeClass('active'); $('.menu li#tab4').addClass('active');
+            //    //}
+            //});
+            //$('.menu').on('click', 'li', function () {
+            //    if ($('.menu li#tab2').hasClass('active') == true)
+            //    {
+            //        $('.menu li#tab2').removeClass('active'); $('.menu li#tab3').addClass('active');
+
+            //    }
+            //});
+            //$('.menu').on('click', 'li', function () {
+            //    if ($('.menu li#tab3').hasClass('active') == true)
+            //    {
+            //        $('.menu li#tab3').removeClass('active'); $('.menu li#tab4').addClass('active');
+
+            //    }
+            //});
+            //$('.menu').on('click', 'li', function () {
+            //    if ($('.menu li#tab4').hasClass('active') == true)
+            //    {
+            //        $('.menu li#tab4').removeClass('active'); $('.menu li#tab1').addClass('active');
+
+            //    }
+
+            //});
+
+            $(".btnNext").click(function (e) {
+                debugger
+                $('.menu li').each(function () {
+                    if ($('.menu li#tab1').hasClass('active') == true) {
+                        $('.menu li#tab1').removeClass('active'); $('.menu li#tab2').addClass('active');
+                        return false;
+                    }
+
+                    if ($('.menu li#tab2').hasClass('active') == true) {
+                        $('.menu li#tab2').removeClass('active'); $('.menu li#tab3').addClass('active');
+                        return false;
+                    }
+
+                    if ($('.menu li#tab3').hasClass('active') == true) {
+                        $('.menu li#tab3').removeClass('active'); $('.menu li#tab4').addClass('active');
+                        return false;
+                    }
+                    if ($('.menu li#tab4').hasClass('active') == true) {
+                        $('.menu li#tab4').removeClass('active'); $('.menu li#tab4').addClass('active');
+                        return false;
+                    }
+
+                })
+            });
+            $(".btnPrev").click(function (e) {
+                debugger
+                $('.menu li').each(function () {
+                    if ($('.menu li#tab1').hasClass('active') == true) {
+                        $('.menu li#tab1').removeClass('active'); $('.menu li#tab1').addClass('active');
+                        return false;
+                    }
+
+                    if ($('.menu li#tab2').hasClass('active') == true) {
+                        $('.menu li#tab2').removeClass('active'); $('.menu li#tab1').addClass('active');
+                        return false;
+                    }
+
+                    if ($('.menu li#tab3').hasClass('active') == true) {
+                        $('.menu li#tab3').removeClass('active'); $('.menu li#tab2').addClass('active');
+                        return false;
+                    }
+                    if ($('.menu li#tab4').hasClass('active') == true) {
+                        $('.menu li#tab4').removeClass('active'); $('.menu li#tab3').addClass('active');
+                        return false;
+                    }
+
+                })
+            });
+
+        });
+    </script>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <style type="text/css">
@@ -62,25 +156,64 @@
             text-decoration: none;
         }
     </style>
+    <style>
+
+        .menu {
+            list-style: none;
+        }
+
+            .menu li {
+                font-size: 20px;
+                margin: 10px;
+                padding: 10px;
+                cursor: pointer;
+                display: inline-block;
+                border-radius: 4px;
+            }
+
+        .menu {
+            width: 550px;
+            margin: 0 auto;
+            background: rgba(16 18 27 / 40%);
+            border-radius: 8px;
+            backdrop-filter: blur(20px);
+        }
+
+        .menu-container {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            -webkit-box-align: center !important;
+            -ms-flex-align: center !important;
+            align-items: center !important;
+            -webkit-box-pack: center !important;
+            -ms-flex-pack: center !important;
+            justify-content: center !important;
+            display: -webkit-box !important;
+            display: -ms-flexbox !important;
+            display: flex !important;
+        }
+
+        .active {
+            background: #9bd0eb;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <h4>Customers</h4>
-    <hr />
-    <table id="tblCustomers" cellpadding="0" cellspacing="0">
-        <tr>
-            <th>CustomerID</th>
-            <th>ContactName</th>
-            <th>City</th>
-            <th>Country</th>
-        </tr>
-        <tr style="display:none">
-            <td>CustomerID</td>
-            <td>ContactName</td>
-            <td>City</td>
-            <td>Country</td>
-        </tr>
-    </table>
-    <br />
+    <div class="menu-container">
+        <ul class="menu">
+            <li id="tab1" class="active"><a href="#a1" id="t1"></a>Home</li>
+            <li id="tab2"><a href="#a2" id="t2"></a>About</li>
+            <li id="tab3"><a href="#a3" id="t3"></a>Contact</li>
+            <li id="tab4"><a href="#a4" id="t4"></a>Photo</li>
+            <li><button class="btnPrev btn-outline-primary">Prev</button></li>
+            <li><button class="btnNext btn-outline-primary">Next</button></li>
+        </ul>
+
+    </div>
+    
+
     <div class="Pager"></div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="~/Scripts/ASPSnippets_Pager.min.js"></script>

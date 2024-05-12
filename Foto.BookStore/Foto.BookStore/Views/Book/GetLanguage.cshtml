@@ -1,0 +1,39 @@
+﻿@model LanguageModel
+
+<div class="container">
+    <h3 class="display-4"> Language Details</h3>
+   
+    <hr />
+    
+    <div class="row">
+        <div class="col-md-6">
+            <img src="~/images/b4.jpg" class="card-img-top">
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>@Model.LanguageValue</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-primary">
+                    <span class="col-form-label">By:</span>
+                    <span class="col-form-label">@Model.LanguageName</span>
+                </div>
+            </div>
+           
+            <div class="row">
+                <div class="col-md-4">
+                    <button class="btn btn-outline-primary">Read Now</button>
+                </div>
+            </div>
+            <hr />
+            <ul class="list-group">
+                <li class="list-group-item"><span class="font-monospace">Language Code - </span>@Model.LanguageValue</li>
+                <li class="list-group-item"><span class="font-monospace">Language Name - </span>@Model.LanguageName</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+

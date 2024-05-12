@@ -1,6 +1,79 @@
-﻿
-@model IEnumerable<BookModel>
+﻿@model IEnumerable<BookModel>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+
+        $(".btnNext").click(function (e) {
+            debugger
+            $('.menu li').each(function () {
+                if ($('.menu li#tab1').hasClass('active') == true) {
+                    $('.menu li#tab1').removeClass('active'); $('.menu li#tab2').addClass('active');
+                    return false;
+                }
+
+                if ($('.menu li#tab2').hasClass('active') == true) {
+                    $('.menu li#tab2').removeClass('active'); $('.menu li#tab3').addClass('active');
+                    return false;
+                }
+
+                if ($('.menu li#tab3').hasClass('active') == true) {
+                    $('.menu li#tab3').removeClass('active'); $('.menu li#tab4').addClass('active');
+                    return false;
+                }
+                if ($('.menu li#tab4').hasClass('active') == true) {
+                    $('.menu li#tab4').removeClass('active'); $('.menu li#tab4').addClass('active');
+                    return false;
+                }
+
+            })
+        });
+        $(".btnPrev").click(function (e) {
+            debugger
+            $('.menu li').each(function () {
+                if ($('.menu li#tab1').hasClass('active') == true) {
+                    $('.menu li#tab1').removeClass('active'); $('.menu li#tab1').addClass('active');
+                    return false;
+                }
+
+                if ($('.menu li#tab2').hasClass('active') == true) {
+                    $('.menu li#tab2').removeClass('active'); $('.menu li#tab1').addClass('active');
+                    return false;
+                }
+
+                if ($('.menu li#tab3').hasClass('active') == true) {
+                    $('.menu li#tab3').removeClass('active'); $('.menu li#tab2').addClass('active');
+                    return false;
+                }
+                if ($('.menu li#tab4').hasClass('active') == true) {
+                    $('.menu li#tab4').removeClass('active'); $('.menu li#tab3').addClass('active');
+                    return false;
+                }
+
+            })
+        });
+       
+    });
+</script>
+<style>
+    .active {
+        color: green
+    }
+
+    .navmenu {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .navmenu li {
+            list-style: none;
+        }
+
+            .navmenu li.active a {
+                color: green;
+            }
+</style>
 
 <div class="container">
     <h3>All Books</h3>
@@ -10,13 +83,14 @@
             <div class="col-md-3">
                 <div class="card mb-3 shadow-sm">
                     @*<svg class="bg-placeholder-img card-img-top" width="100%" height="125"></svg>*@
-                    <img src="~/images/b4.jpg" class="card-img-top" width="100%" height="125" >
+                    <img src="~/images/b4.jpg" class="card-img-top" width="100%" height="125">
                     <div class="card-body">
                         <h5>@book.Title</h5>
                         <p class="card-text">@book.Description</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
-                                <a href="/book/getbook/@book.Id" class="btn btn-sm btn-outline-secondary">View Details</a>
+                                <a asp-route="bookDetailsRoute" asp-route-id="@book.Id"
+                               class="btn btn-sm btn-outline-secondary">View Details</a>
                             </div>
                             <small class="text-muted">@book.Author</small>
                         </div>
@@ -24,6 +98,93 @@
                 </div>
             </div>
         }
-        
+
     </div>
+    <div class="row">
+
+        @* <ul id="unid">
+        <li class="titleHover" id="li_search">Search</li>
+        <li class="titleHover" id="li_notes">Notes</li>
+        <li class="titleHover active" id="li_writeback">Writeback</li>
+        <li class="titleHover" id="li_attorney">Attorney</li>
+        </ul>*@
+
+        @* <ul class="navmenu">
+        <li class="menu" id="tab1"><a href="#a1" id="#a1">Link 1</a></li>
+        <li class="menu" id="tab2"><a href="#a2" id="#a2">Link 2</a></li>
+        <li class="menu" id="tab3"><a href="#a3" id="#a3">Link 3</a></li>
+        </ul>*@
+
+        @* <nav class="nav">
+        <ul id="credit" name="credit">
+        <li data-interest = "0.056" class="active"><a href="#"><span id="excellent" class="0.056">excellent</span></a></li>
+        <li data-interest = "0.099"><a href="#"><span id="good" class="0.099">good</span></a></li>
+        <li data-interest = "0.169"><a href="#"><span id="fair" class="0.169">fair</span></a></li>
+        <li data-interest = 0.299><a href="#"><span id="bad" class="0.299">bad</span></a></li>
+        </ul>
+        </nav>
+        *@
+        @* <ul class="nav_list">
+        <li class="nav-item">
+        <a class="nav_link" href="#a1">Solutions</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav_link" href="#a2">Projects</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav_link" href="#a3">Industries</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav_link" href="#a4">Contact</a>
+        </li>
+        </ul>*@
+
+        <ul>
+          
+        </ul>
+    </div>
+    
 </div>
+<style>
+    
+    .menu {
+        list-style: none;
+    }
+
+        .menu li {
+            font-size: 20px;
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+    .menu {
+        width: 550px;
+        margin: 0 auto;
+        background: rgba(16 18 27 / 40%);
+        border-radius: 8px;
+        backdrop-filter: blur(20px);
+    }
+
+    .menu-container {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+        align-items: center !important;
+        -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+        justify-content: center !important;
+        display: -webkit-box !important;
+        display: -ms-flexbox !important;
+        display: flex !important;
+    }
+
+    .active {
+        background: #9bd0eb;
+        color: black;
+    }
+</style>
